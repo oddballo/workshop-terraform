@@ -19,6 +19,12 @@ variable "project" {
 variable "environment" {
   type = string
 }
+variable "account_id" {
+  type = string
+}
+variable "name" {
+  type = string
+}
 locals {
   prefix = "${var.project}-${var.environment}"
 }
