@@ -25,6 +25,9 @@ variable "account_id" {
 variable "name" {
   type = string
 }
+variable "permissions_boundary" {
+  type = string
+}
 locals {
   prefix = "${var.project}-${var.environment}"
 }
@@ -114,6 +117,7 @@ resource "aws_cloudwatch_event_target" "demo_target" {
 
 resource "aws_iam_role" "demo" {
   name = "${local.prefix}-demo"
+  permissions_boundary = var.permissions_boundary
 
   assume_role_policy = jsonencode(
     {

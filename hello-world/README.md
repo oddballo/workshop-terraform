@@ -52,6 +52,7 @@ AWS_PROFILE=development \
     TF_VAR_region=eu-west-1 \
     TF_VAR_account_id=xxx \
     TF_VAR_name=world \
+    TF_VAR_permissions_boundary=arn:aws:iam::xxx:policy/PermissionBoundary \
     terraform apply
 ```
 
@@ -79,5 +80,6 @@ AWS_PROFILE=development \
     TF_VAR_region=eu-west-1 \
     TF_VAR_account_id=xxx \
     TF_VAR_name=world \
+    TF_VAR_permissions_boundary=arn:aws:iam::xxx:policy/PermissionBoundary \
     terraform destroy
 ```
