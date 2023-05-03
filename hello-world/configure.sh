@@ -20,13 +20,13 @@ if [ -z "$POLICY" ]; then
 fi
 
 # Generate config file
-cat <<EOF > config.txt
-project=workshop
-environment=development
-profile=${PROFILE}
-owner=jsmith
-region=eu-west-1
-account_id=${ACCOUNT}
-permissions_boundary=arn:aws:iam::${ACCOUNT}:policy/${POLICY}
-name=world
+cat <<EOF > config.tfvars
+project			= "workshop"
+environment		= "development"
+profile			= "${PROFILE}"
+owner			= "jsmith"
+region			= "eu-west-1"
+account_id		= "${ACCOUNT}"
+permissions_boundary 	= "arn:aws:iam::${ACCOUNT}:policy/${POLICY}"
+name			= "world"
 EOF
