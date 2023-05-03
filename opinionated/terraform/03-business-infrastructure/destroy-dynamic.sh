@@ -23,9 +23,6 @@ source "$DIR/../common/function.sh"
     fi
 
     # Remove the contents of the buckets
-    if aws s3api head-bucket --bucket "$PREFIX-browser-client" 2>/dev/null; then
-    	aws s3 rm "s3://$PREFIX-browser-client" --recursive
-    fi
     if aws s3api head-bucket --bucket "$PREFIX-tools" 2>/dev/null; then
     	aws s3 rm "s3://$PREFIX-tools" --recursive
     fi
