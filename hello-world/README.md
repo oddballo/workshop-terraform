@@ -30,36 +30,39 @@ Alternatively, if you are using the Single Sign On (SSO) / Organization page, ch
 There are a number of ways to setup the credentials, but the authors recommended is to configure a "profile".
 
 - For standalone accounts (with long term key access), using `aws configure --profile development`
-- For SSO, using `aws configure sso --profile development`
+- For SSO, using `aws configure sso --profile development` (NOTE: provide an empty Session Name when prompted to enable the necessary legacy support for Terraform to work)
 
 In each case, follow the instructions.
 
-# Step 3 : Initialize Terraform
+Once completed, use `export AWS_PROFILE='development'` to set the environment variable for future session commands.
+
+# Step 3 : Configure the Terraform
+The following script will generate the configuration file you will use for the Terraform, including;
+
+- prompting for the name of the Permissions Boundary policy,
+- generating a (likely) unique profile prefix (to prevent namespace clashes), and
+- fetching and setting the AWS account ID.
 
 ```
-AWS_PROFILE=development terraform init
+./configure.sh
 ```
 
-# Step 4 : Apply Terraform
-
-Note: replace account ID with the AWS Account ID that you are deploying to.
+# Step 4 : Initialize Terraform
 
 ```
-AWS_PROFILE=development \
-    TF_VAR_environment=development \
-    TF_VAR_project=demo \
-    TF_VAR_owner=jsmith \
-    TF_VAR_region=eu-west-1 \
-    TF_VAR_account_id=xxx \
-    TF_VAR_name=world \
-    TF_VAR_permissions_boundary=arn:aws:iam::xxx:policy/PermissionBoundary \
-    terraform apply
+terraform init
 ```
 
-# Step 5 : Run the lamba function
+# Step 5 : Apply Terraform
 
 ```
-AWS_PROFILE=development aws lambda invoke \
+terraform apply -var-file "config.txt"
+```
+
+# Step 6 : Run the lamba function
+
+```
+aws lambda invoke \
     --region eu-west-1 \
     --function-name demo-development-demo \
     --cli-binary-format raw-in-base64-out \
@@ -68,18 +71,8 @@ AWS_PROFILE=development aws lambda invoke \
 
 cat response.json
 ```
-# Step 6 : Tear down Terraform
-
-Note: replace account ID with the AWS Account ID that you deployed to.
+# Step 7 : Tear down Terraform
 
 ```
-AWS_PROFILE=development \
-    TF_VAR_environment=development \
-    TF_VAR_project=demo \
-    TF_VAR_owner=jsmith \
-    TF_VAR_region=eu-west-1 \
-    TF_VAR_account_id=xxx \
-    TF_VAR_name=world \
-    TF_VAR_permissions_boundary=arn:aws:iam::xxx:policy/PermissionBoundary \
-    terraform destroy
+terraform destroy -var-file "config.txt"
 ```

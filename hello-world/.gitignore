@@ -1,4 +1,5 @@
 hello-world.zip
+config.txt
 terraform.tfstate
 terraform.tfstate.backup
 .terraform
