@@ -56,7 +56,7 @@ terraform init
 # Step 5 : Apply Terraform
 
 ```
-terraform apply -var-file "config.txt"
+terraform apply -var-file="config.tfvars"
 ```
 
 # Step 6 : Run the lamba function
@@ -74,5 +74,5 @@ cat response.json
 # Step 7 : Tear down Terraform
 
 ```
-terraform destroy -var-file "config.txt"
+terraform destroy -var-file="config.tfvars"
 ```
