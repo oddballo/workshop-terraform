@@ -76,7 +76,7 @@ profile for the remainder of the terminal session. This will need to
 be done each time you open a new terminal session.
 
 ```
-set AWS_PROFILE=sandbox
+export AWS_PROFILE=sandbox
 
 ```
 
