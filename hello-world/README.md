@@ -45,9 +45,11 @@ terraform apply -var-file="config.tfvars"
 # Step 5 : Run the lamba function
 
 ```
+export WORKSHOP_LAMBDA="$(terraform output -json | jq -r '.lambda | .value')"
+
 aws lambda invoke \
     --region eu-west-1 \
-    --function-name demo-development-demo \
+    --function-name "$WORKSHOP_LAMBDA" \
     --cli-binary-format raw-in-base64-out \
     --payload '{ "doesnt": "matter" }' \
     response.json
