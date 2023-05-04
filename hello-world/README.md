@@ -27,7 +27,7 @@ The following script will generate the configuration file you will use for the T
 - fetching and setting the AWS account ID.
 
 ```
-./configure.sh
+/bin/bash configure.sh
 ```
 
 # Step 3 : Initialize Terraform
