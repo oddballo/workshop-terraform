@@ -80,6 +80,14 @@ set AWS_PROFILE=sandbox
 
 ```
 
+### Clone project files
+
+```
+git clone https://github.com/oddballo/workshop-terraform.git
+cd workshop-terraform
+
+```
+
 ## Demonstration: hello-world
 
 Follow the [README.md](hello-world/README.md) to go about setting up a simple Lambda in AWS.

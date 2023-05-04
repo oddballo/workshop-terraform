@@ -11,6 +11,14 @@ authentication.
 
 Don't forget to set the environment variable AWS\_PROFILE on each terminal login.
 
+# Step 2 : Change directory
+
+From the project root, change into this demonstration workshop folder.
+
+```
+cd "hello-world"
+```
+
 # Step 2 : Configure the Terraform
 The following script will generate the configuration file you will use for the Terraform, including;
 
