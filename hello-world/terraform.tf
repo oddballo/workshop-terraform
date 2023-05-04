@@ -138,3 +138,7 @@ resource "aws_iam_role_policy_attachment" "demo" {
   role       = aws_iam_role.demo.name
   policy_arn = aws_iam_policy.demo.arn
 }
+
+output "lamba" {
+  value = aws_lambda_function.demo.function_name
+}
