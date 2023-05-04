@@ -9,8 +9,14 @@
 #
 
 ENVIRONMENT="${ENVIRONMENT:-development}"
+PROFILE="${PROFILE:-}"
 
 ###############################################################
+
+if [ -z "$PROFILE" ]; then
+	echo "Please define the environment variable PROFILE. Aborting."
+	exit 1
+fi
 
 trap ctrl_c INT
 ctrl_c() {
@@ -24,10 +30,8 @@ source "$DIR/../common/function.sh"
 {
 	cd "$DIR"
 
-	ENVIRONMENT_FILE="environments/$ENVIRONMENT.tfvars"
-	ENVIRONMENT_BACKEND_FILE="environments/$ENVIRONMENT.backend.conf"
+	ENVIRONMENT_BACKEND_FILE="environments/$ENVIRONMENT.$PROFILE.backend.conf"
 
-	check_file "$ENVIRONMENT_FILE"
 	check_file "$ENVIRONMENT_BACKEND_FILE"
 
 	source "$ENVIRONMENT_BACKEND_FILE"
@@ -63,4 +67,8 @@ source "$DIR/../common/function.sh"
 		|| { echo "Terraform initilization failed. Aborting."; exit 1; }
 
 	echo "$ENVIRONMENT" > "$DIR/environment.current"
+	echo "$PROFILE" > "$DIR/profile.current"
+
+	echo "Successfully initialized"
+	exit 0
 }
