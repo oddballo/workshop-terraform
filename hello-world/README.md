@@ -6,7 +6,7 @@ This is all vanilla Terraform with no wrappers, state locking, or environment co
 
 # Step 1 : Setup the environment
 
-See the root (README.md)[../README.md] for instructions on setting up the tooling and the 
+See the root [README.md](../README.md) for instructions on setting up the tooling and the 
 authentication.
 
 Don't forget to set the environment variable AWS\_PROFILE on each terminal login.
